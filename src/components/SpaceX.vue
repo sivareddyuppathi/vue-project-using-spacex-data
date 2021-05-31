@@ -2,7 +2,17 @@
   <div class="container">
     <div class="header">SpaceX Launch Programs</div>
     <div class="body">
-      <div class="sidebar"></div>
+      <div class="sidebar">
+        <div>Filters</div>
+        <div>Launch Year</div>
+        <div class="years">
+          <div class="year" v-for="(year, index) in launchYears" :key="index">
+            {{ year }}
+          </div>
+        </div>
+        <div class="launch_success"></div>
+        <div class="landing_success"></div>
+      </div>
       <div class="cards">
         <div v-for="(item, index) in spaceXData" :key="index" class="card">
           <img :src="item.mission_patch_small" alt="" />
@@ -53,6 +63,7 @@ export default {
     return {
       spaceXResponce: null,
       spaceXData: [],
+      launchYears: [],
     };
   },
   methods: {
@@ -66,6 +77,7 @@ export default {
     },
 
     extractRequiredData() {
+      let launchYrs = [];
       this.spaceXData = this.spaceXResponce.data.map((rocket) => {
         const {
           links: { mission_patch_small },
@@ -76,6 +88,11 @@ export default {
           launch_success,
         } = rocket;
 
+        if (!launchYrs.includes(parseInt(launch_year))) {
+          launchYrs.push(parseInt(launch_year));
+        }
+        // ;
+
         return {
           launch_success,
           mission_id,
@@ -85,7 +102,7 @@ export default {
           mission_patch_small,
         };
       });
-      console.log(this.spaceXData);
+      this.launchYears = launchYrs;
     },
   },
   created() {

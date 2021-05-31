@@ -50,3 +50,13 @@ span.title {
 .card-content {
     padding: 6px 0px;
 }
+.sidebar {
+}
+
+.years {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    align-items: center;
+    background-color: white;
+}
