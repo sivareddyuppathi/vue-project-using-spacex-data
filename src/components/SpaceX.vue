@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">SpaceX Launch Programs</div>
     <div class="body">
-      <div class="sidebar">.bb</div>
+      <div class="sidebar"></div>
       <div class="cards">
         <div v-for="(item, index) in spaceXData" :key="index" class="card">
           <img :src="item.mission_patch_small" alt="" />
@@ -51,7 +51,6 @@ export default {
 
   data() {
     return {
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       spaceXResponce: null,
       spaceXData: [],
     };
